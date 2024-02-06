@@ -1,0 +1,12 @@
+/* Shop page CSS */
+
+.shop-header{
+    background-image: url("https://images.alphacoders.com/130/1304918.jpg");
+    background-size: cover;
+    height: 800px;
+    color:orange; 
+}
+
+.shop-stats {
+    color: white; 
+}
