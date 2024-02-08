@@ -18,3 +18,12 @@ class RegisterForm(FlaskForm): #inheriting flaskform gives us the characteristic
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
+
+
+class ProductForm(FlaskForm):
+    name = StringField('Spell Name', validators=[ DataRequired() ] )
+    image = StringField('Img url **Optional')
+    description = StringField('Description **Optional')
+    price = DecimalField('Gold Galleons', validators=[ DataRequired() ])
+    quantity = IntegerField('Quantity', validators=[ DataRequired() ])
+    submit = SubmitField('Submit')

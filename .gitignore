@@ -1,3 +1,4 @@
 .env
 rangers_homework
 __pycache__
+image_cache.sqlite
