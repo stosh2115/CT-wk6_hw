@@ -1,6 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request
 
 
+from rangers_spells.models import Product, Customer, Order, db
 from rangers_spells.models import Product, db
 from rangers_spells.forms import ProductForm
 
@@ -10,8 +11,18 @@ site = Blueprint('site',__name__, template_folder='site_templates')
 def shop():
 
     allprods = Product.query.all()
+    allprods = Product.query.all() 
+    allcustomers = Customer.query.all()
+    allorders = Order.query.all() 
 
-    return render_template('shop.html', shop=allprods, )
+
+    shop_stats = {
+        'products' : len(allprods), 
+        'sales' : sum([order.order_total for order in allorders]),  
+        'customers' : len(allcustomers)
+    } 
+
+    return render_template('shop.html', shop=allprods, stats=shop_stats )
 
 
 @site.route('/shop/create', methods= ['GET', 'POST'])
@@ -29,7 +40,7 @@ def create():
         price = createform.price.data
         quantity = createform.quantity.data 
 
-        #instantiate that class as an object passing in our arguments to replace our parameters 
+        
         
         product = Product(name, price, quantity, image, description)
 
